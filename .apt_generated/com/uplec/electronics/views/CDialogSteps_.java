@@ -6,7 +6,6 @@
 package com.uplec.electronics.views;
 
 import android.content.Context;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.uplec.electronics.R.id;
 import com.uplec.electronics.R.layout;
@@ -23,21 +22,21 @@ import org.androidannotations.api.view.OnViewChangedNotifier;
  * 
  */
 @SuppressWarnings("unused")
-public final class CToastView_
-    extends CToastView
+public final class CDialogSteps_
+    extends CDialogSteps
     implements HasViews, OnViewChangedListener
 {
 
     private boolean alreadyInflated_ = false;
     private final OnViewChangedNotifier onViewChangedNotifier_ = new OnViewChangedNotifier();
 
-    public CToastView_(Context context) {
+    public CDialogSteps_(Context context) {
         super(context);
         init_();
     }
 
-    public static CToastView build(Context context) {
-        CToastView_ instance = new CToastView_(context);
+    public static CDialogSteps build(Context context) {
+        CDialogSteps_ instance = new CDialogSteps_(context);
         instance.onFinishInflate();
         return instance;
     }
@@ -53,7 +52,7 @@ public final class CToastView_
     public void onFinishInflate() {
         if (!alreadyInflated_) {
             alreadyInflated_ = true;
-            inflate(getContext(), layout.toast_custom, this);
+            inflate(getContext(), layout.dialog_explanation_steps, this);
             onViewChangedNotifier_.notifyViewChanged(this);
         }
         super.onFinishInflate();
@@ -67,8 +66,7 @@ public final class CToastView_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        ivImage = ((ImageView) hasViews.findViewById(id.ivImage));
-        tvText = ((TextView) hasViews.findViewById(id.tvText));
+        tvSteps = ((TextView) hasViews.findViewById(id.tvSteps));
     }
 
 }

@@ -86,25 +86,40 @@ public final class AMain_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        tw1 = ((TextView) hasViews.findViewById(id.tw1));
-        ivMode = ((ImageView) hasViews.findViewById(id.ivMode));
-        tw9 = ((TextView) hasViews.findViewById(id.tw9));
-        tw8 = ((TextView) hasViews.findViewById(id.tw8));
-        etNumber = ((EditText) hasViews.findViewById(id.etNumber));
-        tvWrite = ((TextView) hasViews.findViewById(id.tvWrite));
-        ivClear = ((ImageView) hasViews.findViewById(id.ivClear));
-        tw2 = ((TextView) hasViews.findViewById(id.tw2));
-        tvWriteClearNDEFMessage = ((TextView) hasViews.findViewById(id.tvWriteClearNDEFMessage));
-        twUp = ((TextView) hasViews.findViewById(id.twUp));
-        twDown = ((TextView) hasViews.findViewById(id.twDown));
-        tw6 = ((TextView) hasViews.findViewById(id.tw6));
-        tw4 = ((TextView) hasViews.findViewById(id.tw4));
-        tw5 = ((TextView) hasViews.findViewById(id.tw5));
+        tvRead = ((TextView) hasViews.findViewById(id.tvRead));
         tw7 = ((TextView) hasViews.findViewById(id.tw7));
-        tw0 = ((TextView) hasViews.findViewById(id.tw0));
         tvSettings = ((TextView) hasViews.findViewById(id.tvSettings));
         tw3 = ((TextView) hasViews.findViewById(id.tw3));
-        tvRead = ((TextView) hasViews.findViewById(id.tvRead));
+        tw9 = ((TextView) hasViews.findViewById(id.tw9));
+        tw1 = ((TextView) hasViews.findViewById(id.tw1));
+        ivClear = ((ImageView) hasViews.findViewById(id.ivClear));
+        tw4 = ((TextView) hasViews.findViewById(id.tw4));
+        tw6 = ((TextView) hasViews.findViewById(id.tw6));
+        tw8 = ((TextView) hasViews.findViewById(id.tw8));
+        ivMode = ((ImageView) hasViews.findViewById(id.ivMode));
+        tvWrite = ((TextView) hasViews.findViewById(id.tvWrite));
+        twDown = ((TextView) hasViews.findViewById(id.twDown));
+        tw0 = ((TextView) hasViews.findViewById(id.tw0));
+        tw5 = ((TextView) hasViews.findViewById(id.tw5));
+        tw2 = ((TextView) hasViews.findViewById(id.tw2));
+        twUp = ((TextView) hasViews.findViewById(id.twUp));
+        etNumber = ((EditText) hasViews.findViewById(id.etNumber));
+        tvWriteClearNDEFMessage = ((TextView) hasViews.findViewById(id.tvWriteClearNDEFMessage));
+        {
+            View view = hasViews.findViewById(id.tvWrite);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tvWrite();
+                    }
+
+                }
+                );
+            }
+        }
         {
             View view = hasViews.findViewById(id.tvSettings);
             if (view!= null) {
@@ -114,111 +129,6 @@ public final class AMain_
                     @Override
                     public void onClick(View view) {
                         AMain_.this.tvSettings();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.twDown);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.twDown();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw1);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw1();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw8);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw8();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.ivMode);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.ivMode();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw3);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw3();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tvWriteClearNDEFMessage);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tvWriteClearNDEFMessage();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw5);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw5();
                     }
 
                 }
@@ -241,104 +151,14 @@ public final class AMain_
             }
         }
         {
-            View view = hasViews.findViewById(id.ivClear);
+            View view = hasViews.findViewById(id.ivMode);
             if (view!= null) {
                 view.setOnClickListener(new OnClickListener() {
 
 
                     @Override
                     public void onClick(View view) {
-                        AMain_.this.ivClear();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.twUp);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.twUp();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw0);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw0();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tvRead);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tvRead();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw7);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw7();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw4);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw4();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tvWrite);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tvWrite();
+                        AMain_.this.ivMode();
                     }
 
                 }
@@ -361,6 +181,81 @@ public final class AMain_
             }
         }
         {
+            View view = hasViews.findViewById(id.tvWriteClearNDEFMessage);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tvWriteClearNDEFMessage();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw7);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw7();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw1);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw1();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.twUp);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.twUp();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw4);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw4();
+                    }
+
+                }
+                );
+            }
+        }
+        {
             View view = hasViews.findViewById(id.tw9);
             if (view!= null) {
                 view.setOnClickListener(new OnClickListener() {
@@ -369,6 +264,111 @@ public final class AMain_
                     @Override
                     public void onClick(View view) {
                         AMain_.this.tw9();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.ivClear);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.ivClear();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw5);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw5();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.twDown);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.twDown();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw8);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw8();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw3);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw3();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tvRead);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tvRead();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw0);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw0();
                     }
 
                 }
@@ -418,13 +418,13 @@ public final class AMain_
     }
 
     @Override
-    public void processWriteResponse(final byte[] response) {
+    public void toggleProgressDialogState(final boolean isVisible) {
         handler_.post(new Runnable() {
 
 
             @Override
             public void run() {
-                AMain_.super.processWriteResponse(response);
+                AMain_.super.toggleProgressDialogState(isVisible);
             }
 
         }
@@ -446,31 +446,13 @@ public final class AMain_
     }
 
     @Override
-    public void toggleProgressDialogState(final boolean isVisible) {
+    public void processWriteResponse(final byte[] response) {
         handler_.post(new Runnable() {
 
 
             @Override
             public void run() {
-                AMain_.super.toggleProgressDialogState(isVisible);
-            }
-
-        }
-        );
-    }
-
-    @Override
-    public void readBytesRaw(final String startAddr) {
-        BackgroundExecutor.execute(new BackgroundExecutor.Task("", 0, "") {
-
-
-            @Override
-            public void execute() {
-                try {
-                    AMain_.super.readBytesRaw(startAddr);
-                } catch (Throwable e) {
-                    Thread.getDefaultUncaughtExceptionHandler().uncaughtException(Thread.currentThread(), e);
-                }
+                AMain_.super.processWriteResponse(response);
             }
 
         }
@@ -486,6 +468,24 @@ public final class AMain_
             public void execute() {
                 try {
                     AMain_.super.writeBytesRaw(arrayToWrite, startAddr);
+                } catch (Throwable e) {
+                    Thread.getDefaultUncaughtExceptionHandler().uncaughtException(Thread.currentThread(), e);
+                }
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void readBytesRaw(final String startAddr) {
+        BackgroundExecutor.execute(new BackgroundExecutor.Task("", 0, "") {
+
+
+            @Override
+            public void execute() {
+                try {
+                    AMain_.super.readBytesRaw(startAddr);
                 } catch (Throwable e) {
                     Thread.getDefaultUncaughtExceptionHandler().uncaughtException(Thread.currentThread(), e);
                 }

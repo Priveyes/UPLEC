@@ -1,6 +1,9 @@
 package com.uplec.electronics;
 
-import java.util.ArrayList;
+import static com.uplec.electronics.utils.UPLECUtils.decodeSystemInfoResponse;
+import static com.uplec.electronics.utils.UPLECUtils.log;
+
+import java.util.LinkedList;
 
 import org.androidannotations.annotations.AfterTextChange;
 import org.androidannotations.annotations.AfterViews;
@@ -23,7 +26,6 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -36,16 +38,12 @@ import android.widget.Toast;
 import com.uplec.electronics.constants.GlobalConstatns;
 import com.uplec.electronics.constants.GlobalConstatns.WRITING_STATE;
 import com.uplec.electronics.core.DataDevice;
-import com.uplec.electronics.core.DataRead;
-import com.uplec.electronics.core.DataReadAdapter;
 import com.uplec.electronics.core.Helper;
 import com.uplec.electronics.core.NDEFMessages;
 import com.uplec.electronics.core.NFCCommand;
 import com.uplec.electronics.utils.AppPref_;
 import com.uplec.electronics.utils.UPLECUtils;
 import com.uplec.electronics.utils.UPLECUtils.FontCache;
-
-import static com.uplec.electronics.utils.UPLECUtils.decodeSystemInfoResponse;
 
 
 @EActivity(R.layout.activity_main) public class AMain extends Activity {
@@ -102,11 +100,14 @@ import static com.uplec.electronics.utils.UPLECUtils.decodeSystemInfoResponse;
 			mTechLists = new String[][] { new String[] { android.nfc.tech.NfcV.class.getName() } };
 			ma = (DataDevice) getApplication();
 		}
+
+		String message = UPLECUtils.formatNumberToBytePattern(99);
+		UPLECUtils.displayStepsInDialog(message, this);
 	}
 
 	@Click void tvSettings() {
-		 //tvSettings.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
-		 //startActivity(new Intent(AMain.this, ASettings_.class));
+		// tvSettings.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
+		// startActivity(new Intent(AMain.this, ASettings_.class));
 		startActivity(new Intent(AMain.this, ARawDataRW_.class));
 	}
 
@@ -326,7 +327,7 @@ import static com.uplec.electronics.utils.UPLECUtils.decodeSystemInfoResponse;
 				etNumber.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake));
 			} else {
 				new StartWriteTask(etNumber.getText().toString()).execute();
-				//writeBytesRaw(arrayBytesToWrite, "0000");
+				// writeBytesRaw(arrayBytesToWrite, "0000");
 			}
 		} else {
 			UPLECUtils.showCustomToast(this, "NFC is not supported by this device", R.drawable.warning);
@@ -341,7 +342,7 @@ import static com.uplec.electronics.utils.UPLECUtils.decodeSystemInfoResponse;
 		// check is nfc supported
 		if (GlobalConstatns.IS_NFC_SUPPORTED) {
 			new StartReadTask().execute();
-			//readBytesRaw("0000");
+			// readBytesRaw("0000");
 		} else {
 			UPLECUtils.showCustomToast(this, "NFC is not supported by this device", R.drawable.warning);
 		}
@@ -840,7 +841,7 @@ import static com.uplec.electronics.utils.UPLECUtils.decodeSystemInfoResponse;
 			// format address string
 			startAddr = Helper.FormatStringAddressStart(Helper.castHexKeyboard(startAddr), dataDevice);
 			addressStart = Helper.ConvertStringToHexBytes(startAddr);
-			// Hardcode amount of blocks (2)
+			// Hardcoded amount of blocks (2)
 			sNbOfBlock = Helper.FormatStringNbBlockInteger("0002", startAddr, dataDevice);
 			byte[] numberOfBlockToRead = Helper.ConvertIntTo2bytesHexaFormat(Integer.parseInt(sNbOfBlock));
 
@@ -864,7 +865,7 @@ import static com.uplec.electronics.utils.UPLECUtils.decodeSystemInfoResponse;
 				}
 				cpt = 0;
 			}
-			// TODO: Add method to process 
+			// TODO: Add method to process
 			// this.dialog.setMessage("Please, keep your phone close to the tag");
 			// this.dialog.show();
 		} else {
@@ -876,9 +877,13 @@ import static com.uplec.electronics.utils.UPLECUtils.decodeSystemInfoResponse;
 
 	/**
 	 * Process read response
-	 * @param response response byte array
-	 * @param numberOfBlock amount of blocks (array / (SIZE OF BLOCK = 4))
-	 * @param addressStart binary representation of address
+	 * 
+	 * @param response
+	 *            response byte array
+	 * @param numberOfBlock
+	 *            amount of blocks (array / (SIZE OF BLOCK = 4))
+	 * @param addressStart
+	 *            binary representation of address
 	 */
 	@UiThread void processReadResponse(byte[] response, int numberOfBlock, byte[] addressStart) {
 		toggleProgressDialogState(false);
@@ -900,7 +905,6 @@ import static com.uplec.electronics.utils.UPLECUtils.decodeSystemInfoResponse;
 
 				for (int i = 0; i < numberOfBlock; i++) {
 					UPLECUtils.log(catValueBlocks[i]);
-					// listOfData.add(new DataRead(catBlocks[i], catValueBlocks[i]));
 				}
 			} else {
 				// added to erase screen in case of read fail

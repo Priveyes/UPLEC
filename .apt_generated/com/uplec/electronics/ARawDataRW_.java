@@ -72,8 +72,8 @@ public final class ARawDataRW_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        btnRead = ((Button) hasViews.findViewById(id.btnRead));
         lvItems = ((ListView) hasViews.findViewById(id.lvItems));
+        btnRead = ((Button) hasViews.findViewById(id.btnRead));
         {
             View view = hasViews.findViewById(id.btnRead);
             if (view!= null) {

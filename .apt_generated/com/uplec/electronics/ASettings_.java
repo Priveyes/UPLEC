@@ -75,25 +75,10 @@ public final class ASettings_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        cbWriteAutomatically = ((CheckBox) hasViews.findViewById(id.cbWriteAutomatically));
         tvCancel = ((TextView) hasViews.findViewById(id.tvCancel));
+        cbWriteAutomatically = ((CheckBox) hasViews.findViewById(id.cbWriteAutomatically));
         tvOk = ((TextView) hasViews.findViewById(id.tvOk));
         etMaxNumber = ((EditText) hasViews.findViewById(id.etMaxNumber));
-        {
-            View view = hasViews.findViewById(id.tvOk);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        ASettings_.this.tvOk();
-                    }
-
-                }
-                );
-            }
-        }
         {
             View view = hasViews.findViewById(id.tvCancel);
             if (view!= null) {
@@ -103,6 +88,21 @@ public final class ASettings_
                     @Override
                     public void onClick(View view) {
                         ASettings_.this.tvCancel();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tvOk);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        ASettings_.this.tvOk();
                     }
 
                 }

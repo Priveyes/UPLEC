@@ -1,27 +1,249 @@
 package com.uplec.electronics.utils;
 
 import java.util.Hashtable;
+import java.util.LinkedList;
+
+import javax.xml.datatype.DatatypeFactory;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.Selection;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.uplec.electronics.BuildConfig;
 import com.uplec.electronics.constants.GlobalConstatns;
+import com.uplec.electronics.constants.GlobalConstatns.LEFT_DIGITS_PATTERN;
+import com.uplec.electronics.constants.GlobalConstatns.MIDDLE_DIGITS_PATTERN;
+import com.uplec.electronics.constants.GlobalConstatns.RIGHT_DIGITS_PATTERN;
 import com.uplec.electronics.core.DataDevice;
 import com.uplec.electronics.core.Helper;
+import com.uplec.electronics.views.CDialogSteps;
+import com.uplec.electronics.views.CDialogSteps_;
 import com.uplec.electronics.views.CToastView;
 import com.uplec.electronics.views.CToastView_;
 
 
 public class UPLECUtils {
+
+	public static void displayStepsInDialog(String stepsMessage, Activity activity) {
+		CDialogSteps view = CDialogSteps_.build(activity);
+		view.tvSteps.setText(stepsMessage);
+		Dialog d = new Dialog(activity);
+		d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		d.setContentView(view);
+		d.show();
+	}
+
+	public static String bytesToHex(byte[] bytes) {
+		final char[] hexArray = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+		char[] hexChars = new char[bytes.length * 2];
+		int v;
+		for (int j = 0; j < bytes.length; j++) {
+			v = bytes[j] & 0xFF;
+			hexChars[j * 2] = hexArray[v >>> 4];
+			hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+		}
+		String result = new String(hexChars);
+
+		String humanReadableString = "";
+		for (int i = 0; i < result.length(); i++) {
+			humanReadableString += result.toCharArray()[i];
+			if ((i + 1) % 2 == 0) {
+				humanReadableString += "  ";
+			}
+		}
+		return humanReadableString;
+	}
+
+	public static final String formatNumberToBytePattern(int number) {
+		String result = "STEP 1 (read from NFC Tag)\n\n";
+
+		byte[] response = { (byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03, (byte) 0x04, (byte) 0x05, (byte) 0x06, (byte) 0x07, (byte) 0x08, (byte) 0x09, (byte) 0x0A, (byte) 0x0B, (byte) 0x0C, (byte) 0x0D, (byte) 0x0E, (byte) 0x0F };
+
+		byte[] word1 = { response[0], response[1], response[2], response[3] };
+		byte[] word2 = { response[4], response[5], response[6], response[7] };
+		byte[] word3 = { response[8], response[9], response[10], response[11] };
+		byte[] word4 = { response[12], response[13], response[14], response[15] };
+
+		result += "[" + bytesToHex(word1) + "] [" + bytesToHex(word2) + "]\n[" + bytesToHex(word3) + "] [" + bytesToHex(word4) + "]";
+
+		LinkedList<Integer> stackWithSeparateDigits = UPLECUtils.formatNumberForProcessor(number, GlobalConstatns.AMOUNT_OF_DIGITS_IN_PATTERN);
+
+		int leftDigit = stackWithSeparateDigits.pop();
+		int middleDigit = stackWithSeparateDigits.pop();
+		int rightDigit = stackWithSeparateDigits.pop();
+
+		byte[] leftBytePattern = getLeftDigitByteRepresentation(leftDigit);
+		byte[] middleBytePattern = getMiddleDigitByteRepresentation(middleDigit);
+		byte[] rightBytePattern = getRightDigitByteRepresentation(rightDigit);
+
+		log(leftDigit + "xx == " + bytesToHex(leftBytePattern));
+		log("x" + middleDigit + "x == " + bytesToHex(middleBytePattern));
+		log("xx" + rightDigit + " == " + bytesToHex(rightBytePattern));
+
+		result += "\n\nSTEP 2 (Parse user number)\n\n";
+
+		result += leftDigit + "xx == " + bytesToHex(leftBytePattern);
+		result += "\nx" + middleDigit + "x == " + bytesToHex(middleBytePattern);
+		result += "\nxx" + rightDigit + " == " + bytesToHex(rightBytePattern);
+
+		byte[] resultArray = new byte[8];
+
+		for (int i = 0; i < 8; i++) {
+			resultArray[i] = (byte) (leftBytePattern[i] + middleBytePattern[i] + rightBytePattern[i]);
+		}
+		result += "\n=====================================";
+		result += String.format("\n%s%s%s == %s", leftDigit, middleDigit, rightDigit, bytesToHex(resultArray));
+
+		result += "\n\nSTEP 3 (Copy words 3 & 4 -> 1 & 2)\n\n";
+
+		word1 = word3;
+		word2 = word4;
+
+		result += "[" + bytesToHex(word1) + "] [" + bytesToHex(word2) + "]\n[" + bytesToHex(word3) + "] [" + bytesToHex(word4) + "]";
+
+		result += "\n\nSTEP 4 (Preparing data to write)\n\n";
+
+		word4 = GlobalConstatns.CONTROL_COMMANDS.UPDATE_0x7F;
+		byte[] wordInputedByUser = { resultArray[4], resultArray[5], resultArray[6], resultArray[7] };		
+		
+		result += "[" + bytesToHex(word1) + "] [" + bytesToHex(word2) + "]\n[" + bytesToHex(wordInputedByUser) + "] [" + bytesToHex(word4) + "]";
+		
+		return result;
+
+	}
+
+	public static final byte[] getLeftDigitByteRepresentation(int value) {
+		switch (value) {
+			case 0:
+				return LEFT_DIGITS_PATTERN._0;
+
+			case 1:
+				return LEFT_DIGITS_PATTERN._1;
+		}
+
+		return null;
+	}
+
+	public static final byte[] getMiddleDigitByteRepresentation(int value) {
+		switch (value) {
+			case 0:
+				return MIDDLE_DIGITS_PATTERN._0;
+
+			case 1:
+				return MIDDLE_DIGITS_PATTERN._1;
+
+			case 2:
+				return MIDDLE_DIGITS_PATTERN._2;
+
+			case 3:
+				return MIDDLE_DIGITS_PATTERN._3;
+
+			case 4:
+				return MIDDLE_DIGITS_PATTERN._4;
+
+			case 5:
+				return MIDDLE_DIGITS_PATTERN._5;
+
+			case 6:
+				return MIDDLE_DIGITS_PATTERN._6;
+
+			case 7:
+				return MIDDLE_DIGITS_PATTERN._7;
+
+			case 8:
+				return MIDDLE_DIGITS_PATTERN._8;
+
+			case 9:
+				return MIDDLE_DIGITS_PATTERN._9;
+		}
+
+		return null;
+	}
+
+	public static final byte[] getRightDigitByteRepresentation(int value) {
+		switch (value) {
+			case 0:
+				return RIGHT_DIGITS_PATTERN._0;
+
+			case 1:
+				return RIGHT_DIGITS_PATTERN._1;
+
+			case 2:
+				return RIGHT_DIGITS_PATTERN._2;
+
+			case 3:
+				return RIGHT_DIGITS_PATTERN._3;
+
+			case 4:
+				return RIGHT_DIGITS_PATTERN._4;
+
+			case 5:
+				return RIGHT_DIGITS_PATTERN._5;
+
+			case 6:
+				return RIGHT_DIGITS_PATTERN._6;
+
+			case 7:
+				return RIGHT_DIGITS_PATTERN._7;
+
+			case 8:
+				return RIGHT_DIGITS_PATTERN._8;
+
+			case 9:
+				return RIGHT_DIGITS_PATTERN._9;
+		}
+
+		return null;
+	}
+
+	/**
+	 * Format number into specific digit format
+	 * examples:
+	 * <p>
+	 * <b>123 -> ['1','2','3']</b>
+	 * </p>
+	 * <p>
+	 * <b>93 -> ['0','9','3']</b>
+	 * </p>
+	 * <p>
+	 * <b>5 -> ['0','0','5']</b>
+	 * </p>
+	 * <p>
+	 * <b>0 -> ['0','0','0']</b>
+	 * </p>
+	 * 
+	 * @param number
+	 *            integer representation of number to convert
+	 * @param amountOfDigitsInPattern
+	 *            amount digits in the returned stack, in case if amount of digits in number < than amount of digits in pattern
+	 *            all higher digits filled as zero
+	 * @return linked list with numbers
+	 */
+	private static final LinkedList<Integer> formatNumberForProcessor(int number, int amountOfDigitsInPattern) {
+		// stack to collect digits (queue behavior are required because digits into reverse order)
+		LinkedList<Integer> stack = new LinkedList<Integer>();
+		int numberToConvert = number;
+		while (numberToConvert > 0) {
+			stack.push(numberToConvert % 10);
+			numberToConvert = numberToConvert / 10;
+		}
+
+		// add appropriate amount of 0 in the front of the queue in case if number < 100
+		while (stack.size() < amountOfDigitsInPattern) {
+			stack.push(0);
+		}
+
+		return stack;
+	}
 
 	/**
 	 * Log string into logcat (for debug purposes)
@@ -43,7 +265,7 @@ public class UPLECUtils {
 	 */
 	public static void log(int message) {
 		if (BuildConfig.DEBUG) {
-			Log.w(GlobalConstatns.LOG_TAG, String.valueOf(message));
+			Log.d(GlobalConstatns.LOG_TAG, String.valueOf(message));
 		}
 	}
 
@@ -65,7 +287,8 @@ public class UPLECUtils {
 	/**
 	 * Converts string representation of binary array to bytes array
 	 * 
-	 * @param s string to be converted
+	 * @param s
+	 *            string to be converted
 	 * @return byte array
 	 */
 	public static byte[] fromBinary(String s) {
