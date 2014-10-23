@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" 
+	android:theme = "@android:style/Theme.NoTitleBar.Fullscreen"
+	>
+
+	<ImageView android:id="@+id/background" android:background="@drawable/background"
+		android:layout_alignParentTop="true" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_centerHorizontal="true" />
+
+	<ScrollView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" >
+		<RelativeLayout android:orientation="vertical" android:layout_marginTop="10dp"
+			android:layout_height="wrap_content" android:layout_width="fill_parent">
+
+			<TextView style="@style/font_categorie" android:text="UID :" android:id="@+id/_uid" 
+				 android:layout_marginTop="65dp" />
+			<TextView style="@style/font_value" android:text="insert here"
+				android:layout_marginTop="65dp" 
+				android:id="@+id/uid" android:layout_toRightOf ="@id/_uid" />
+			
+			<ImageView android:id="@+id/bar1" android:background="@drawable/bar_separation" 
+						android:layout_centerHorizontal="true" style="@style/bar_style" 
+						android:layout_below ="@id/_uid" />
+
+
+			<TextView style="@style/font_categorie" android:text="Manufacturer :" 
+				android:id="@+id/_Manufacturer" android:layout_below ="@id/bar1"/>
+			<TextView style="@style/font_value" android:text="insert here"
+				android:id="@+id/manufacturer" android:layout_toRightOf ="@id/_Manufacturer" android:layout_below ="@id/bar1"/>
+
+			<ImageView android:id="@+id/bar2" android:background="@drawable/bar_separation" 
+						android:layout_centerHorizontal="true" style="@style/bar_style" 
+						android:layout_below ="@id/_Manufacturer" />
+
+			<TextView style="@style/font_categorie" android:text="Product name :" 
+				android:id="@+id/_Product_name" android:layout_below ="@id/bar2"/>
+			<TextView style="@style/font_value" android:text="insert here"
+				android:id="@+id/product_name" android:layout_toRightOf ="@id/_Product_name" android:layout_below ="@id/bar2"/>
+
+			<ImageView android:id="@+id/bar3" android:background="@drawable/bar_separation" 
+						android:layout_centerHorizontal="true" style="@style/bar_style" 
+						android:layout_below ="@id/_Product_name" />
+
+			<TextView style="@style/font_categorie" android:text="Protocol :" 
+				android:id="@+id/_Protocol" android:layout_below ="@id/bar3"/>
+			<TextView style="@style/font_value" android:text="insert here"
+				android:id="@+id/techno" android:layout_toRightOf ="@id/_Protocol" android:layout_below ="@id/bar3"/>
+
+			<ImageView android:id="@+id/bar4" android:background="@drawable/bar_separation" 
+						android:layout_centerHorizontal="true" style="@style/bar_style" 
+						android:layout_below ="@id/_Protocol" />
+			
+
+			<TextView style="@style/font_categorie" android:text="DSFID :" 
+				android:id="@+id/_DSFID" android:layout_below ="@id/bar4"/>
+			<TextView style="@style/font_value" android:text="insert here"
+				android:id="@+id/dsfid" android:layout_toRightOf ="@id/_DSFID" android:layout_below ="@id/bar4"/>
+
+			<ImageView android:id="@+id/bar5" android:background="@drawable/bar_separation" 
+					android:layout_centerHorizontal="true" style="@style/bar_style" 
+					android:layout_below ="@id/_DSFID" />
+
+
+			<TextView style="@style/font_categorie" android:text="AFI :" 
+				android:id="@+id/_AFI" android:layout_below ="@id/bar5"/>
+			<TextView style="@style/font_value" android:text="insert here"
+				android:id="@+id/afi" android:layout_toRightOf ="@id/_AFI" android:layout_below ="@id/bar5"/>
+
+			<ImageView android:id="@+id/bar6" android:background="@drawable/bar_separation" 
+					android:layout_centerHorizontal="true" style="@style/bar_style" 
+					android:layout_below ="@id/_AFI" />
+		
+
+			<TextView style="@style/font_categorie" android:text="Memory :" 
+			android:id="@+id/_Memory" android:layout_below ="@id/bar6"/>
+			<TextView style="@style/font_memory" android:text="insert here"
+				android:id="@+id/memory_size"  android:layout_below ="@id/_Memory"/>
+			
+			<TextView style="@style/font_memory" android:text="insert here"
+				android:id="@+id/number_block" android:layout_below ="@id/memory_size" />
+				
+			
+			<ImageView android:id="@+id/bar7" android:background="@drawable/bar_separation" 
+				android:layout_centerHorizontal="true" style="@style/bar_style" 
+				android:layout_below ="@id/number_block" />
+				
+
+			<TextView style="@style/font_categorie" android:text="IC Ref :" 
+				android:id="@+id/_IC_Ref" android:layout_below ="@id/bar7"/>
+			<TextView style="@style/font_value" android:text="insert here"
+				android:id="@+id/ref" android:layout_toRightOf ="@id/_IC_Ref" android:layout_below ="@id/bar7"/>
+		</RelativeLayout>
+	</ScrollView>
+
+
+	<LinearLayout android:orientation="horizontal" android:id="@+id/lyButtons"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true" android:layout_marginBottom = "20dp" >
+		
+		<Button android:id="@+id/ndefFormatButton" 
+			android:layout_weight="1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:background="@drawable/selector_ndef_format" 
+			android:layout_marginRight = "10dp" android:layout_marginLeft = "10dp"></Button>
+		
+		<Button android:id="@+id/basicFormatButton" 
+			android:layout_weight="1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:background="@drawable/selector_basic_format" 
+			android:layout_marginRight = "10dp" android:layout_marginLeft = "10dp"/>
+	
+	</LinearLayout>
+</RelativeLayout>

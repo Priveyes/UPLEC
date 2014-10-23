@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/toast_layout_root"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@drawable/yellow_bg"
+	android:orientation="horizontal"
+	android:padding="10dp" >
+
+	<LinearLayout
+		android:id="@+id/llCToast"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_centerVertical="true"
+		android:background="@drawable/transparent_inside_and_white_round_border"
+		android:orientation="horizontal"
+		android:padding="7dp" >
+
+		<ImageView
+			android:id="@+id/ivImage"
+			android:layout_width="50dp"
+			android:layout_height="50dp" />
+	</LinearLayout>
+
+	<TextView
+	    android:id="@+id/tvText"
+	    android:layout_margin="10dp"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_centerVertical="true"
+	    android:layout_toRightOf="@+id/llCToast"
+	    android:gravity="center_vertical"
+	    android:text="Chair number : 290"
+	    android:textAppearance="?android:attr/textAppearanceMedium"
+	    android:textColor="@android:color/black"
+	    android:textStyle="bold" />
+
+</RelativeLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <ImageView
+        android:id="@+id/ivBanner_read"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background" />
+
+    <LinearLayout
+        android:id="@+id/rlBanner_read"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/ivBanner_read"
+        android:layout_marginTop="65dp"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/textFrom"
+                style="@style/font_from_to"
+                android:layout_marginLeft="15dp"
+                android:text="From" />
+
+            <EditText
+                android:id="@+id/edFrom"
+                style="@style/font_from_to_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/textFrom"
+                android:imeOptions="actionDone"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/textNbBlock"
+                style="@style/font_from_to"
+                android:layout_toRightOf="@id/edFrom"
+                android:text="Nb Blocks" />
+
+            <EditText
+                android:id="@+id/edTo"
+                style="@style/font_from_to_edit_nb_block"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/textNbBlock"
+                android:hint="0001"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rlRead"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/llScanRead"
+        android:layout_below="@+id/rlBanner_read"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/lvItems"
+            android:layout_width="wrap_content"
+            android:layout_height="330dp"
+            android:cacheColorHint="#00000000" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llScanRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal" >
+ 
+        <Button
+            android:id="@+id/btnRead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_read_command"
+            android:text="" />
+    </LinearLayout>
+
+</RelativeLayout>

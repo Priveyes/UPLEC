@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@android:color/white">
+	
+	<ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" 
+		android:background="@drawable/background" android:id="@+id/ivBanner_menu" />	
+		
+	<LinearLayout 
+	    android:id="@+id/rlButtons"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/rlBanner_read"
+		android:orientation="vertical" 
+        android:layout_centerHorizontal="true"
+		android:layout_marginBottom = "10dp" >
+
+			<Button 	
+			    android:id="@+id/ReadManagementButton"			    
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"  
+			    android:layout_marginTop="75dp"
+			    android:background="@drawable/selector_read" 
+			/>
+			
+			<Button 
+			    android:id="@+id/WriteManagementButton"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"  
+			    android:layout_marginTop="10dp"
+			    android:background="@drawable/selector_write" 
+			/>
+
+			<Button 
+			    android:id="@+id/FileManagementButton"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"  
+			    android:layout_marginTop="30dp"
+			    android:background="@drawable/selector_file_management" 
+			/>
+			
+			<Button 
+			    android:id="@+id/ImageManagementButton"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"  
+			    android:layout_marginTop="10dp"
+			    android:background="@drawable/selector_image_transfer" 
+			/>
+										    
+			<Button 
+			    android:id="@+id/PresentPasswordManagementButton"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"  
+			    android:layout_marginTop="30dp"
+			    android:background="@drawable/selector_password_management" 
+			/>
+
+			<Button 
+			    android:id="@+id/LockSectorManagementButton"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"  
+			    android:layout_marginTop="10dp"
+			    android:background="@drawable/selector_locksector_management" 
+			/>
+
+			<Button 
+			    android:id="@+id/EnergyHarvestingManagementButton"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"  
+			    android:layout_marginTop="30dp"
+			    android:background="@drawable/selector_energyharvesting_management" 
+			/>
+
+		</LinearLayout>									
+	
+	<EditText
+	    android:id="@+id/editText1"
+	    android:layout_below="@+id/rlButtons"
+	    android:layout_width="180dp"
+	    android:layout_height="35dp"
+	    android:layout_centerHorizontal="true"
+	    android:editable="false"
+	    android:layout_marginTop="20dp"
+		android:ems="10"
+		android:text="         * M24LRxx products only"
+		android:textSize="10dp"	/>															
+	
+</RelativeLayout>
