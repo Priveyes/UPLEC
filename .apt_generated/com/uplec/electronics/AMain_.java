@@ -50,8 +50,8 @@ public final class AMain_
     private void init_(Bundle savedInstanceState) {
         appPref = new AppPref_(this);
         OnViewChangedNotifier.registerOnViewChangedListener(this);
-        animationShaking = AnimationUtils.loadAnimation(this, anim.shake);
         animationChangingMode = AnimationUtils.loadAnimation(this, anim.fade_in);
+        animationShaking = AnimationUtils.loadAnimation(this, anim.shake);
     }
 
     @Override
@@ -86,124 +86,34 @@ public final class AMain_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        tvRead = ((TextView) hasViews.findViewById(id.tvRead));
-        tw7 = ((TextView) hasViews.findViewById(id.tw7));
-        tvSettings = ((TextView) hasViews.findViewById(id.tvSettings));
-        tw3 = ((TextView) hasViews.findViewById(id.tw3));
-        tw9 = ((TextView) hasViews.findViewById(id.tw9));
-        tw1 = ((TextView) hasViews.findViewById(id.tw1));
-        ivClear = ((ImageView) hasViews.findViewById(id.ivClear));
-        tw4 = ((TextView) hasViews.findViewById(id.tw4));
-        tw6 = ((TextView) hasViews.findViewById(id.tw6));
-        tw8 = ((TextView) hasViews.findViewById(id.tw8));
-        ivMode = ((ImageView) hasViews.findViewById(id.ivMode));
-        tvWrite = ((TextView) hasViews.findViewById(id.tvWrite));
-        twDown = ((TextView) hasViews.findViewById(id.twDown));
         tw0 = ((TextView) hasViews.findViewById(id.tw0));
-        tw5 = ((TextView) hasViews.findViewById(id.tw5));
-        tw2 = ((TextView) hasViews.findViewById(id.tw2));
         twUp = ((TextView) hasViews.findViewById(id.twUp));
+        ivClear = ((ImageView) hasViews.findViewById(id.ivClear));
+        tw6 = ((TextView) hasViews.findViewById(id.tw6));
+        tw5 = ((TextView) hasViews.findViewById(id.tw5));
+        ivMode = ((ImageView) hasViews.findViewById(id.ivMode));
+        tw3 = ((TextView) hasViews.findViewById(id.tw3));
+        tw2 = ((TextView) hasViews.findViewById(id.tw2));
+        tvWrite = ((TextView) hasViews.findViewById(id.tvWrite));
         etNumber = ((EditText) hasViews.findViewById(id.etNumber));
+        tw4 = ((TextView) hasViews.findViewById(id.tw4));
         tvWriteClearNDEFMessage = ((TextView) hasViews.findViewById(id.tvWriteClearNDEFMessage));
+        twDown = ((TextView) hasViews.findViewById(id.twDown));
+        tw9 = ((TextView) hasViews.findViewById(id.tw9));
+        tvRead = ((TextView) hasViews.findViewById(id.tvRead));
+        tvSettings = ((TextView) hasViews.findViewById(id.tvSettings));
+        tw8 = ((TextView) hasViews.findViewById(id.tw8));
+        tw1 = ((TextView) hasViews.findViewById(id.tw1));
+        tw7 = ((TextView) hasViews.findViewById(id.tw7));
         {
-            View view = hasViews.findViewById(id.tvWrite);
+            View view = hasViews.findViewById(id.twUp);
             if (view!= null) {
                 view.setOnClickListener(new OnClickListener() {
 
 
                     @Override
                     public void onClick(View view) {
-                        AMain_.this.tvWrite();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tvSettings);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tvSettings();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw6);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw6();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.ivMode);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.ivMode();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw2);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw2();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tvWriteClearNDEFMessage);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tvWriteClearNDEFMessage();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw7);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw7();
+                        AMain_.this.twUp();
                     }
 
                 }
@@ -226,66 +136,6 @@ public final class AMain_
             }
         }
         {
-            View view = hasViews.findViewById(id.twUp);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.twUp();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw4);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw4();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.tw9);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.tw9();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = hasViews.findViewById(id.ivClear);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        AMain_.this.ivClear();
-                    }
-
-                }
-                );
-            }
-        }
-        {
             View view = hasViews.findViewById(id.tw5);
             if (view!= null) {
                 view.setOnClickListener(new OnClickListener() {
@@ -301,14 +151,14 @@ public final class AMain_
             }
         }
         {
-            View view = hasViews.findViewById(id.twDown);
+            View view = hasViews.findViewById(id.tvRead);
             if (view!= null) {
                 view.setOnClickListener(new OnClickListener() {
 
 
                     @Override
                     public void onClick(View view) {
-                        AMain_.this.twDown();
+                        AMain_.this.tvRead();
                     }
 
                 }
@@ -346,14 +196,119 @@ public final class AMain_
             }
         }
         {
-            View view = hasViews.findViewById(id.tvRead);
+            View view = hasViews.findViewById(id.ivClear);
             if (view!= null) {
                 view.setOnClickListener(new OnClickListener() {
 
 
                     @Override
                     public void onClick(View view) {
-                        AMain_.this.tvRead();
+                        AMain_.this.ivClear();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tvWrite);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tvWrite();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw7);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw7();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw9);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw9();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw4);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw4();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw6);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw6();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tvSettings);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tvSettings();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tvWriteClearNDEFMessage);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tvWriteClearNDEFMessage();
                     }
 
                 }
@@ -369,6 +324,51 @@ public final class AMain_
                     @Override
                     public void onClick(View view) {
                         AMain_.this.tw0();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.ivMode);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.ivMode();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.twDown);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.twDown();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.tw2);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        AMain_.this.tw2();
                     }
 
                 }
@@ -418,13 +418,13 @@ public final class AMain_
     }
 
     @Override
-    public void toggleProgressDialogState(final boolean isVisible) {
+    public void processWriteResponse(final byte[] response) {
         handler_.post(new Runnable() {
 
 
             @Override
             public void run() {
-                AMain_.super.toggleProgressDialogState(isVisible);
+                AMain_.super.processWriteResponse(response);
             }
 
         }
@@ -446,13 +446,13 @@ public final class AMain_
     }
 
     @Override
-    public void processWriteResponse(final byte[] response) {
+    public void toggleProgressDialogState(final boolean isVisible) {
         handler_.post(new Runnable() {
 
 
             @Override
             public void run() {
-                AMain_.super.processWriteResponse(response);
+                AMain_.super.toggleProgressDialogState(isVisible);
             }
 
         }

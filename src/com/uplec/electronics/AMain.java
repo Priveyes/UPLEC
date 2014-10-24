@@ -100,15 +100,14 @@ import com.uplec.electronics.utils.UPLECUtils.FontCache;
 			mTechLists = new String[][] { new String[] { android.nfc.tech.NfcV.class.getName() } };
 			ma = (DataDevice) getApplication();
 		}
-
-		String message = UPLECUtils.formatNumberToBytePattern(99);
-		UPLECUtils.displayStepsInDialog(message, this);
 	}
 
 	@Click void tvSettings() {
 		// tvSettings.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
 		// startActivity(new Intent(AMain.this, ASettings_.class));
-		startActivity(new Intent(AMain.this, ARawDataRW_.class));
+		//startActivity(new Intent(AMain.this, ARawDataRW_.class));
+		String message = UPLECUtils.formatNumberToBytePattern(Integer.valueOf(etNumber.getText().toString()));
+		UPLECUtils.displayStepsInDialog(message, this);
 	}
 
 	@Click void ivMode() {

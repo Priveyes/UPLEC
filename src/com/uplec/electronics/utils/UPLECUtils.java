@@ -66,14 +66,23 @@ public class UPLECUtils {
 	public static final String formatNumberToBytePattern(int number) {
 		String result = "STEP 1 (read from NFC Tag)\n\n";
 
-		byte[] response = { (byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03, (byte) 0x04, (byte) 0x05, (byte) 0x06, (byte) 0x07, (byte) 0x08, (byte) 0x09, (byte) 0x0A, (byte) 0x0B, (byte) 0x0C, (byte) 0x0D, (byte) 0x0E, (byte) 0x0F };
+		// fake response
+		byte[] response = { (byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03, (byte) 0x04, (byte) 0x05, (byte) 0x06, (byte) 0x07, (byte) 0x08, (byte) 0x09, (byte) 0x0A, (byte) 0x0B, (byte) 0xFF, (byte) 0x0D, (byte) 0x0E, (byte) 0x0F };
 
+		// divide all response into 4 words
 		byte[] word1 = { response[0], response[1], response[2], response[3] };
 		byte[] word2 = { response[4], response[5], response[6], response[7] };
 		byte[] word3 = { response[8], response[9], response[10], response[11] };
 		byte[] word4 = { response[12], response[13], response[14], response[15] };
+		
+		// get control code
+		byte controlCode = response[15];
 
-		result += "[" + bytesToHex(word1) + "] [" + bytesToHex(word2) + "]\n[" + bytesToHex(word3) + "] [" + bytesToHex(word4) + "]";
+		// displaying steps
+		result += "[" + bytesToHex(word1) + "] [" + bytesToHex(word2) + "]\n[" + bytesToHex(word3) + "] [" + bytesToHex(word4) + "]\n";
+		
+		// displaying control code
+		result+="Control code : ["+UPLECUtils.bytesToHex(new byte[]{controlCode})+"]\n";
 
 		LinkedList<Integer> stackWithSeparateDigits = UPLECUtils.formatNumberForProcessor(number, GlobalConstatns.AMOUNT_OF_DIGITS_IN_PATTERN);
 
@@ -85,9 +94,9 @@ public class UPLECUtils {
 		byte[] middleBytePattern = getMiddleDigitByteRepresentation(middleDigit);
 		byte[] rightBytePattern = getRightDigitByteRepresentation(rightDigit);
 
-		log(leftDigit + "xx == " + bytesToHex(leftBytePattern));
-		log("x" + middleDigit + "x == " + bytesToHex(middleBytePattern));
-		log("xx" + rightDigit + " == " + bytesToHex(rightBytePattern));
+		//log(leftDigit + "xx == " + bytesToHex(leftBytePattern));
+		//log("x" + middleDigit + "x == " + bytesToHex(middleBytePattern));
+		//log("xx" + rightDigit + " == " + bytesToHex(rightBytePattern));
 
 		result += "\n\nSTEP 2 (Parse user number)\n\n";
 

@@ -76,9 +76,9 @@ public final class ASettings_
     @Override
     public void onViewChanged(HasViews hasViews) {
         tvCancel = ((TextView) hasViews.findViewById(id.tvCancel));
+        etMaxNumber = ((EditText) hasViews.findViewById(id.etMaxNumber));
         cbWriteAutomatically = ((CheckBox) hasViews.findViewById(id.cbWriteAutomatically));
         tvOk = ((TextView) hasViews.findViewById(id.tvOk));
-        etMaxNumber = ((EditText) hasViews.findViewById(id.etMaxNumber));
         {
             View view = hasViews.findViewById(id.tvCancel);
             if (view!= null) {
